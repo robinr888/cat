@@ -91,7 +91,7 @@ Helm Charts are in the helm folder of the repository root .  Few items focused d
 
     `export KUBECONFIG=<location of kubeconfig file>`
 
-    [OPA Deployments](./opa/README.md)
+    More info on [OPA Deployments here ](./opa/README.md)
 
 
 
