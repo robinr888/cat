@@ -4,7 +4,7 @@ metadata:
   name: k8spspverifyserviceaccounttoken
   annotations:
     description: >-
-      Controls the ability of any Pod to enable automountServiceAccountToken.
+      Controls the ability of any Pod to enable automountServiceAccountToken and use serviceAccountName as default .
 spec:
   crd:
     spec:
@@ -14,7 +14,7 @@ spec:
         openAPIV3Schema:
           type: object
           description: >-
-            Controls the ability of any Pod to enable automountServiceAccountToken.
+            Controls the ability of any Pod to enable automountServiceAccountToken and use serviceAccountName as default.
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |
@@ -23,7 +23,7 @@ spec:
         violation[{"msg": msg}] {
             obj := input.review.object
             svctokenname(obj.spec)
-            msg := sprintf("service account token namedisallowed, pod: %v", [obj.metadata.name])
+            msg := sprintf("Service Account token name or Automount Service Token is disallowed, pod: %v", [obj.metadata.name])
         }
 
         svctokenname(spec) {

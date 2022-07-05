@@ -8,6 +8,8 @@ import configparser
 import os
 
 
+
+# Read config from ini file.
 try:
     deployEnv = os.getenv('Environment')
     configfile = deployEnv + "config.ini"
@@ -17,6 +19,9 @@ except:
 config = configparser.ConfigParser()
 config.read(deployEnv)
 
+
+
+# Set Variable needed to enable metrics rendering using prommetheus client librariers.
 if not os.getenv('DEBUG_METRICS'):
     os.environ["DEBUG_METRICS"] = config["default"]["PromethuesMetrics"]
 
@@ -25,6 +30,7 @@ metrics = PrometheusMetrics(app)
 
 
 
+# Logging configuration.
 from logging.config import dictConfig
 
 dictConfig({
@@ -43,9 +49,12 @@ dictConfig({
 })
 
 
+#  
 
 @app.route('/getRandomData',methods=['GET'])
 def getRandomData():
+    # This functions returns mockdata from data.json file.
+    # This can be enhanced to connect to database using Db modules and data fetched from it.
     logging.info('GET /getRandomData')
     try:
         with open('data.json') as f:
@@ -58,6 +67,7 @@ def getRandomData():
 
 @app.route('/')
 def main():
+    # This functions acts as a health check for the api 
     return 'CreativeAdvancedTechnology Assignment Working ok !!'
 
 
