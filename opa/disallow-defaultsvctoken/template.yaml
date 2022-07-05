@@ -23,7 +23,7 @@ spec:
         violation[{"msg": msg}] {
             obj := input.review.object
             svctokenname(obj.spec)
-            msg := sprintf("Service Account token name or Automount Service Token is disallowed, pod: %v", [obj.metadata.name])
+            msg := sprintf("Service Account token name  default and Automount Service Token set to true is disallowed, pod: %v", [obj.metadata.name])
         }
 
         svctokenname(spec) {
