@@ -46,8 +46,6 @@ Helm Charts are in the helm folder of the repository root .  Few items focused d
 *   Prod and dev segregation
     
 
-
-
 1. pre-requisites : Make sure you have helm binary installed on your local machine . 
 
     * Make sure you have admin permission to install on the Kubernetes Cluster , export the user kubeconfig with admin permissions.*
@@ -65,16 +63,20 @@ Helm Charts are in the helm folder of the repository root .  Few items focused d
 
         `helm upgrade -i flaskapp ./helm -f ./helm/overrides/prod-values.yml`
 
+    ```
+    Expected results when hitting app through Ingress
+    
+    curl -H 'Host: chart-example.local' https://<Loadbalancer/IngressIP>/getRandomData  -k 
+        {"Mood":"Happy"}
 
+    ```
 3. Helm Testing 
 
         helm test flaskapp
 
-
 4. Helm Hooks 
 
     Helm Hooks are configured using the job.yaml in helm templates directory , Currently it a simple job which makes a pre-upgrade / pre-install step invoking a curl GET call to api , this can be enhanced to Load datasets into DB or any pre or post deployment actions .
-
 
 5. Potential Enhancements : TO-DO
     * Appropriate --set commands can be passed to change image tag as necessary in the cicd build .
@@ -82,6 +84,7 @@ Helm Charts are in the helm folder of the repository root .  Few items focused d
     * Helm Hooks can be customised to trigger custom db action.
     * DB Charts can be added as dependency to the chart as well and the hooks executed against those Database as per use cases .
     * from security perspective imagePullSecrets can be configured.
+    * Certs can be appllied to Ingress
 
 
 ### 3. Deploy to Kubernetes Deployment

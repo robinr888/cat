@@ -16,4 +16,4 @@ spec:
       containers:
       - name: curl
         image: alpine/curl
-        args: ['{{ include "flaskapp.fullname" . }}:{{ .Values.service.port }}/getRandomData']
+        args: ['www.google.com']
