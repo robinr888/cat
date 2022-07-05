@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-root-disallow-v2
+  labels:
+    app: nginx-root-disallow
+spec:
+  containers:
+  - name: nginx
+    image: nginx

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-non-default-svc-account-allow
+  labels:
+    app: nginx-non-default-svc-account-allow
+spec:
+  serviceAccountName: flask-svc
+  automountServiceAccountToken: false
+  containers:
+  - name: nginx
+    image: robinr888/flaskapp:1.0.0
+    securityContext:
+      runAsNonRoot: true

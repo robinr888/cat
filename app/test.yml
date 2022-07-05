@@ -1,0 +1,30 @@
+schemaVersion: "2.0.0"
+
+globalEnvVars:
+  - key: "VIRTUAL_ENV"
+    value: "/env"
+  - key: "PATH"
+    value: "/env/bin:$PATH"
+
+
+fileExistenceTests:
+  - name: 'startup.sh'
+    path: '/startup.sh'
+    shouldExist: true
+    permissions: '-rwxr--r--'
+    uid: 1000
+    gid: 0
+    isExecutableBy: 'any'
+
+metadataTest:
+  workdir: "/app/"
+  user: "flask"
+
+commandTests:
+  - name: "say hello world"
+    command: "bash"
+    args:
+      - -c
+      - |
+         ls -ld /app &&
+         ls -al /app/
