@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-non-default-svc-account-disallow
+  labels:
+    app: nginx-non-default-svc-account-disallow
+spec:
+  serviceAccountName: default
+  automountServiceAccountToken: true
+  containers:
+  - name: nginx
+    image: robinr888/flaskapp:1.0.0
+    securityContext:
+      runAsNonRoot: true
