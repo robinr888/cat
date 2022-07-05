@@ -21,7 +21,7 @@ metadataTest:
   user: "flask"
 
 commandTests:
-  - name: "say hello world"
+  - name: "random command test"
     command: "bash"
     args:
       - -c

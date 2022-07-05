@@ -47,6 +47,10 @@ helm upgrade -i flaskapp ./helm -f ./helm/overrides/dev-values.yml
 helm upgrade -i flaskapp ./helm -f ./helm/overrides/prod-values.yml
 ```
 
+Appropriate --set commands can be passed to change image tag as necessary in the cicd build .
+
+
+
 ### Helm Testing 
 
 ```
@@ -66,7 +70,7 @@ Helm Hooks are configured using the job.yaml in helm templates directory , Curre
 `export KUBECONFIG=<location of kubeconfig file>`
 
 
-[OPA Deployments](../opa/README.md)
+[OPA Deployments](./opa/README.md)
 
 
 

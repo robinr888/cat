@@ -39,7 +39,3 @@ test:
 # 	docker tag $(APP_NAME) $(DOCKER_REPO)/$(APP_NAME):$(VERSION)
 
 
-
-
-
-### Requires Docker daemon running on localhost 
